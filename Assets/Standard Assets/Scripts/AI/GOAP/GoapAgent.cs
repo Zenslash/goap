@@ -178,11 +178,14 @@ public sealed class GoapAgent : MonoBehaviour {
 	}
 
 	private void findDataProvider() {
-		foreach (Component comp in gameObject.GetComponents(typeof(Component)) ) {
-			if ( typeof(IGoap).IsAssignableFrom(comp.GetType()) ) {
-				dataProvider = (IGoap)comp;
-				return;
-			}
+		Component[] components = gameObject.GetComponents(typeof(Component));
+		foreach (Component comp in components)
+		{
+		    if (comp is IGoap)
+		    {
+			dataProvider = (IGoap) comp;
+			return;
+		    }
 		}
 	}
 
